@@ -7,6 +7,7 @@ import lombok.*;
 
 @Table(name = "tb_usuarios")
 @Entity(name = "Usuario")
+@Inheritance(strategy = InheritanceType.JOINED)
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -21,12 +22,16 @@ public class Usuario {
     private String telefone;
     private Boolean ativo;
 
+    @Column(name = "tipo_de_usuario")
+    private String tipoDeUsuario;
+
     public Usuario(DadosCadastroUsuario dados) {
         this.ativo = true;
         this.nome = dados.nome();
         this.email = dados.email();
         this.telefone = dados.telefone();
         this.senha = dados.senha();
+        this.tipoDeUsuario = dados.tipoDeUsuario();
 
 
     }
@@ -100,5 +105,13 @@ public class Usuario {
 
     public void desativar() {
         this.ativo = false;
+    }
+
+    public String getTipoDeUsuario() {
+        return tipoDeUsuario;
+    }
+
+    public void setTipoDeUsuario(String tipoDeUsuario) {
+        this.tipoDeUsuario = tipoDeUsuario;
     }
 }
