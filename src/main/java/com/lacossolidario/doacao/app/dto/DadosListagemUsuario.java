@@ -9,6 +9,7 @@ public record DadosListagemUsuario(
          String senha,
          String telefone
 
+
 ) {
 
     public DadosListagemUsuario(Usuario usuario){

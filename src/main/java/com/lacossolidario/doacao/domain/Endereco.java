@@ -5,8 +5,6 @@ import jakarta.persistence.Embeddable;
 import lombok.*;
 
 @Embeddable
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Endereco {
@@ -31,5 +29,32 @@ public class Endereco {
         if(dados.numero() != null) {
             this.numero = dados.numero();
         }
+    }
+
+    public String getLogradouro() {
+        return logradouro;
+    }
+
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public void atualizarEndereco(Endereco endereco) {
     }
 }

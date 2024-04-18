@@ -1,6 +1,8 @@
 package com.lacossolidario.doacao.domain;
 
+import com.lacossolidario.doacao.app.dto.DadosAtualizacaoDoacao;
 import com.lacossolidario.doacao.infra.model.DadosCadastroDoacao;
+import com.lacossolidario.doacao.infra.model.DadosEndereco;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,6 +28,20 @@ public class Doacao {
         this.descricao = dados.descricao();
         this.data = dados.data();
         this.endereco = new Endereco(dados.endereco());
+
+    }
+
+    public void atualizaDoacao(DadosAtualizacaoDoacao dados){
+        if(dados.categoria() != null) {
+            this.categoria = dados.categoria();
+        }
+        if(dados.descricao() != null) {
+            this.descricao = dados.descricao();
+        }
+        if(dados.endereco() != null) {
+            this.endereco.atualizarEndereco(dados.endereco());
+        }
+
 
     }
 

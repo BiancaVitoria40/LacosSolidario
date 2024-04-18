@@ -1,6 +1,9 @@
 package com.lacossolidario.doacao.app.resource;
 
+import com.lacossolidario.doacao.app.dto.DadosAtualizacaoDoacao;
+import com.lacossolidario.doacao.app.dto.DadosAtualizacaoUsuario;
 import com.lacossolidario.doacao.app.dto.DadosListagemDoacoes;
+import com.lacossolidario.doacao.app.dto.DadosListagemUsuario;
 import com.lacossolidario.doacao.domain.Doacao;
 import com.lacossolidario.doacao.infra.model.DadosCadastroDoacao;
 import com.lacossolidario.doacao.infra.repository.DoacaoRepository;
@@ -38,6 +41,16 @@ public class DoacaoResource {
                 .map(DadosListagemDoacoes::new).toList();
 
         return ResponseEntity.ok(list);
+
+    }
+
+    @PutMapping
+    @Transactional
+    public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizacaoDoacao dados){
+        var doacao = repository.getReferenceById(dados.id());
+        doacao.atualizaDoacao(dados);
+
+        return ResponseEntity.ok(new DadosListagemDoacoes(doacao));
 
     }
 
